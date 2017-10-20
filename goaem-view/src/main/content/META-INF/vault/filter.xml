@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+
+    <filter root="/apps/shared">
+        <exclude pattern="/apps/shared/install" />
+        <exclude pattern="/apps/shared/config" />
+        <exclude pattern="/apps/shared/config.author" />
+        <exclude pattern="/apps/shared/config.author.stage" />
+        <exclude pattern="/apps/shared/config.author.prod" />
+        <exclude pattern="/apps/shared/config.publish" />
+        <exclude pattern="/apps/shared/config.publish.stage" />
+        <exclude pattern="/apps/shared/config.publish.prod" />
+    </filter>
+    <filter root="/apps/wcm/core/content" mode="update"/>
+    <filter root="/apps/granite/ui/components/shell/collectionpage" mode="update"/>
+
+    <filter root="/apps/sling" />
+
+    <filter root="/etc/designs/shared"/>
+    <filter root="/etc/designs/goaem/shared"/>
+
+</workspaceFilter>

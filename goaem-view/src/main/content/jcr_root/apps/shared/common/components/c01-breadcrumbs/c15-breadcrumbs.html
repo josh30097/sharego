@@ -1,0 +1,6 @@
+<div data-sly-test="${wcmmode.edit}" class="cq-placeholder" data-emptytext="${'Breadcrumbs' @ i18n}"></div>
+<sly data-sly-use.breadcrumbs="${'com.goaem.shared.htl.BreadcrumbUse'}" />
+
+<ul data-sly-list="${breadcrumbs.crumbs}" class="breadcrumbs site-breadcrumbs-list small-12 columns">
+    <li class="breadcrumbs-item"><a href="${item.path}.html">${item.title}</a></li>
+</ul>

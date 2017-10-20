@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0" jcr:primaryType="sling:OsgiConfig"
+          cq.aclsetup.rules.0="[allow;jcr:read;everyone;/]"
+          cq.aclsetup.rules.1="[deny;jcr:read;everyone;/libs]"
+          cq.aclsetup.rules.2="[allow;jcr:read;everyone;/libs;rep:glob=*/widgets]"
+          cq.aclsetup.rules.3="[allow;jcr:read;everyone;/libs;rep:glob=*/widgets/*]"
+          cq.aclsetup.rules.4="[deny;jcr:read;everyone;/apps]"
+          cq.aclsetup.rules.5="[allow;jcr:read;everyone;/apps;rep:glob=*/widgets]"
+          cq.aclsetup.rules.6="[allow;jcr:read;everyone;/apps;rep:glob=*/widgets/*]"
+          cq.aclsetup.rules.7="[allow;jcr:read;everyone;/etc/tags;rep:glob=*]"
+          cq.aclsetup.rules.8="[allow;jcr:read;everyone;/libs/granite/csrf/token]"
+/>

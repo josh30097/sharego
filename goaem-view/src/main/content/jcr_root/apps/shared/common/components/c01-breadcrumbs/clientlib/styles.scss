@@ -1,0 +1,24 @@
+@import '../../../../../../etc/designs/shared/common/clientlibs/variables.scss';
+//
+//  C15 Breadcrumbs
+//
+
+.breadcrumbs {
+    padding: 2rem 0.9375rem 0 0.9375rem;
+    li {
+        >a{
+            font-size:1.375rem;
+            text-transform: capitalize;
+            }
+        &:last-child{
+            a{
+                color: $gray;
+                pointer-events: none;
+                text-decoration: none;
+            }
+        }
+        &:not(:last-child):after {
+             font-size: 1.2rem;
+         }
+    }
+}

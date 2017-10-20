@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+
+    <!-- OSGi Configs -->
+    <filter root="/apps/shared/config"/>
+    <filter root="/apps/shared/config.author"/>
+    <filter root="/apps/shared/config.publish"/>
+    <filter root="/apps/shared/config.author.stage"/>
+    <filter root="/apps/shared/config.author.prod"/>
+    <filter root="/apps/shared/config.publish.stage"/>
+    <filter root="/apps/shared/config.publish.prod"/>
+    <filter root="/apps/cq/commons/config.author.stage"/>
+    <filter root="/apps/cq/commons/config.author.prod"/>
+    <filter root="/apps/cq/commons/config.publish.stage"/>
+    <filter root="/apps/cq/commons/config.publish.prod"/>
+    <filter root="/apps/cq/core/config.publish.stage"/>
+    <filter root="/apps/cq/core/config.publish.prod"/>
+
+    <filter root="/etc/map.publish.stage"/>
+    <filter root="/etc/map.publish.prod"/>
+</workspaceFilter>

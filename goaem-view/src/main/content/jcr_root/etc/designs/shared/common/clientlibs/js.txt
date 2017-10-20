@@ -1,0 +1,6 @@
+foundation/js/vendor/jquery.js
+foundation/js/vendor/what-input.js
+foundation/js/vendor/foundation.min.js
+../../shared-dist/shared-common.js
+js/twitter.js
+js/picturefill.min.js

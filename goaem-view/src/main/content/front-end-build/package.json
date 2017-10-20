@@ -1,0 +1,38 @@
+{
+  "name": "front-end-build",
+  "version": "1.0.0",
+  "description": "Webpack build tool to compile assets (SCSS, JS, etc) for the AEM CMS",
+  "main": "index.js",
+  "engines": {
+    "node": "6.9.1",
+    "npm": "3.10.8"
+  },
+  "scripts": {
+    "dev": "webpack --progress --colors",
+    "debug": "webpack --display-error-details --display-modules --progress --colors  --debug",
+    "watch-webpack": "webpack --watch",
+    "watch-aem": "aem-front -w ../../../../../ -e **/*.scss -e **/*___jb_old___ -e **/*___jb_tmp___",
+    "watch": "concurrently --prefix \"[ {name} ]\"  --names \"AEM Front, Webpack \" --prefix-colors \"white.bgCyan.bold,white.bgGreen.bold\" \"npm run watch-aem\" \"npm run watch-webpack\"",
+    "build": "webpack -p"
+  },
+  "author": "ryan@infielddigital.com",
+  "license": "ISC",
+  "devDependencies": {
+    "aem-front": "0.1.0",
+    "autoprefixer": "6.5.1",
+    "clean-webpack-plugin": "^0.1.13",
+    "concurrently": "^3.1.0",
+    "css-loader": "^0.25.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "node-sass": "^3.10.1",
+    "postcss-loader": "^1.1.0",
+    "sass-loader": "^4.0.2",
+    "sass-resources-loader": "^1.1.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.14.0"
+  },
+  "dependencies": {
+    "jquery": "^3.1.1"
+  }
+}

@@ -1,0 +1,23 @@
+.padding__top {
+    padding-top: 0.9375rem;
+}
+.padding__left {
+    padding-left: 0.9375rem;
+}
+.padding__right {
+    padding-right: 0.9375rem;
+}
+.padding__bottom{
+    padding-bottom:0.9375rem;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    color: inherit;
+    font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    font-style: normal;
+    font-weight: 200;
+    line-height:1;
+    margin:0 0 1rem 0;
+    padding:0;
+    text-rendering: optimizeLegibility;
+}
