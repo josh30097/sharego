@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.goaem.shared</groupId>
+        <artifactId>goaem-shared</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <artifactId>goaem-view</artifactId>
+    <packaging>content-package</packaging>
+    <name>Goaem View</name>
+    <description>The view files for the Shared View project</description>
+
+    <build>
+        <!--  Deprecated because of subpackage problem. Keeping for posterity or in case
+        this needs to be added back later. -->
+        <!--<resources>-->
+            <!--<resource>-->
+                <!--<directory>${basedir}/src/main/content/META-INF</directory>-->
+                <!--<targetPath>../vault-work/META-INF</targetPath>-->
+            <!--</resource>-->
+            <!--<resource>-->
+                <!--<directory>${basedir}/src/main/content/jcr_root</directory>-->
+                <!--<excludes>-->
+                    <!--<exclude>**/.vlt</exclude>-->
+                    <!--<exclude>**/.vltignore</exclude>-->
+                    <!--<exclude>**/.gitignore</exclude>-->
+                    <!--<exclude>**/*.iml</exclude>-->
+                    <!--<exclude>**/.classpath</exclude>-->
+                    <!--<exclude>**/.project</exclude>-->
+                    <!--<exclude>**/.settings</exclude>-->
+                    <!--<exclude>**/.DS_Store</exclude>-->
+                    <!--<exclude>**/target/**</exclude>-->
+                    <!--<exclude>**/pom.xml</exclude>-->
+                <!--</excludes>-->
+            <!--</resource>-->
+        <!--</resources>-->
+        <plugins>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <includeEmptyDirs>true</includeEmptyDirs>
+                </configuration>
+
+                <!--  Deprecated because of subpackage problem. Keeping for posterity or in case
+        this needs to be added back later. -->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>copy-metainf-vault-resources</id>-->
+                        <!--<phase>generate-resources</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>copy-resources</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<outputDirectory>${project.build.directory}/vault-work/META-INF</outputDirectory>-->
+                            <!--<resources>-->
+                                <!--<resource>-->
+                                    <!--<directory>${basedir}/META-INF</directory>-->
+                                    <!--<filtering>false</filtering>-->
+                                <!--</resource>-->
+                            <!--</resources>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            </plugin>
+
+            <!-- ====================================================================== -->
+            <!-- F R O N T E N D   M A V E N   P L U G I N                              -->
+            <!-- ====================================================================== -->
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>1.1</version>
+                <configuration>
+                    <workingDirectory>src/main/content/front-end-build</workingDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>install node and npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                        <configuration>
+                            <!-- See https://nodejs.org/en/download/ for latest node and npm (lts) versions -->
+                            <nodeVersion>v6.9.1</nodeVersion>
+                            <npmVersion>3.10.8</npmVersion>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm run build</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run build</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.day.jcr.vault</groupId>
+                <artifactId>content-package-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        <id>package</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>package</goal>
+                        </goals>
+                        <configuration>
+                            <filterSource>src/main/content/META-INF/vault/filter.xml</filterSource>
+                            <group>com.goaem.shared</group>
+                            <embeddeds>
+                                <embedded>
+                                    <groupId>com.goaem.shared</groupId>
+                                    <artifactId>goaem-core</artifactId>
+                                    <target>/apps/shared/install</target>
+                                </embedded>
+                            </embeddeds>
+                            <subPackages>
+                                <subPackage>
+                                    <groupId>com.adobe.acs</groupId>
+                                    <artifactId>acs-aem-commons-content</artifactId>
+                                    <filter>true</filter>
+                                </subPackage>
+                                <subPackage>
+                                    <groupId>com.goaem.shared</groupId>
+                                    <artifactId>goaem-config</artifactId>
+                                    <filter>true</filter>
+                                </subPackage>
+                            </subPackages>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>install-content-package</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>install</goal>
+                        </goals>
+                        <configuration>
+                            <targetURL>${aem.protocol}://${aem.host}/crx/packmgr/service.jsp
+                            </targetURL>
+                            <userId>${aem.user}</userId>
+                            <password>${aem.password}</password>
+                            <failOnError>true</failOnError>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.goaem.shared</groupId>
+            <artifactId>goaem-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.adobe.acs</groupId>
+            <artifactId>acs-aem-commons-content</artifactId>
+            <version>3.6.0</version>
+            <type>content-package</type>
+            <classifier>min</classifier>
+        </dependency>
+        <dependency>
+            <groupId>com.goaem.shared</groupId>
+            <artifactId>goaem-config</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>content-package</type>
+        </dependency>
+    </dependencies>
+
+</project>
